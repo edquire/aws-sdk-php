@@ -46,7 +46,7 @@ class SignatureV4 implements SignatureInterface
         $ldt = gmdate(self::ISO8601_BASIC,  strtotime($request->getHeader('X-Amz-Date')[0])); //Azaz added the date from request header
         $sdt = substr($ldt, 0, 8);
         $parsed = $this->parseRequest($request);
-        //$parsed['headers']['X-Amz-Date'] = [$ldt];
+        $parsed['headers']['X-Amz-Date'] = [$ldt];
 
         if ($token = $credentials->getSecurityToken()) {
             $parsed['headers']['X-Amz-Security-Token'] = [$token];
