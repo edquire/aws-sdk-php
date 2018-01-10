@@ -3,15 +3,15 @@ namespace Aws\Test\Signature;
 
 use Aws\Credentials\Credentials;
 use Aws\Signature\S3SignatureV4;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 
 require_once __DIR__ . '/sig_hack.php';
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Aws\Signature\S3SignatureV4
  */
-class S3SignatureV4Test extends \PHPUnit_Framework_TestCase
+class S3SignatureV4Test extends TestCase
 {
     public static function setUpBeforeClass()
     {
