@@ -43,9 +43,15 @@ class SignatureV4 implements SignatureInterface
         RequestInterface $request,
         CredentialsInterface $credentials
     ) {
-        $xamzdate = $request->getHeader('X-Amz-Date')[0]; // get the request X-Amz-Date header
-        $timestamp = isset($xamzdate) ? $this->convertToTimestamp($xamzdate, null) : time(); // convert to timestamp if set
-        $ldt = gmdate(self::ISO8601_BASIC, $timestamp); //Passed the date from request header if set
+        $xamxhdr =  $request->getHeader('X-Amz-Date', '');
+        if(count($xamxhdr))
+        {
+            $ldt = gmdate(self::ISO8601_BASIC,  strtotime($xamxhdr[0]));
+        }
+        else
+        {
+            $ldt = gmdate(self::ISO8601_BASIC);
+        }
         $sdt = substr($ldt, 0, 8);
         $parsed = $this->parseRequest($request);
         $parsed['headers']['X-Amz-Date'] = [$ldt];
