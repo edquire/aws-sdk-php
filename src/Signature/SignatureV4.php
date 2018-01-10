@@ -43,7 +43,15 @@ class SignatureV4 implements SignatureInterface
         RequestInterface $request,
         CredentialsInterface $credentials
     ) {
-        $ldt = gmdate(self::ISO8601_BASIC,  strtotime($request->getHeader('X-Amz-Date')[0])); //Azaz added the date from request header
+        $xamxhdr =  $request->getHeader('X-Amz-Date', '');
+        if(count($xamxhdr))
+        {
+            $ldt = gmdate(self::ISO8601_BASIC,  strtotime($xamxhdr[0]));
+        }
+        else
+        {
+            $ldt = gmdate(self::ISO8601_BASIC);
+        }
         $sdt = substr($ldt, 0, 8);
         $parsed = $this->parseRequest($request);
         $parsed['headers']['X-Amz-Date'] = [$ldt];
