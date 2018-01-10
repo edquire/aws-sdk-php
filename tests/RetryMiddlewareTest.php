@@ -7,16 +7,16 @@ use Aws\Exception\AwsException;
 use Aws\MockHandler;
 use Aws\Result;
 use Aws\RetryMiddleware;
-use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\RejectedPromise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Aws\RetryMiddleware
  */
-class RetryMiddlewareTest extends \PHPUnit_Framework_TestCase
+class RetryMiddlewareTest extends TestCase
 {
     public function testAddRetryHeader()
     {

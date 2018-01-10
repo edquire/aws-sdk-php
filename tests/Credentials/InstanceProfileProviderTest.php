@@ -5,12 +5,12 @@ use Aws\Credentials\InstanceProfileProvider;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
-use Psr\Http\Message\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Aws\Credentials\InstanceProfileProvider
  */
-class InstanceProfileProviderTest extends \PHPUnit_Framework_TestCase
+class InstanceProfileProviderTest extends TestCase
 {
     private function getCredentialArray(
         $key, $secret, $token = null, $time = null, $success = true
@@ -59,7 +59,7 @@ class InstanceProfileProviderTest extends \PHPUnit_Framework_TestCase
         )->wait();
         $this->assertEquals('foo', $c->getAccessKeyId());
         $this->assertEquals('baz', $c->getSecretKey());
-        $this->assertEquals(null, $c->getSecurityToken());
+        $this->assertNull($c->getSecurityToken());
         $this->assertEquals($t, $c->getExpiration());
     }
 
@@ -118,7 +118,7 @@ class InstanceProfileProviderTest extends \PHPUnit_Framework_TestCase
         )->wait();
         $this->assertEquals('foo', $c->getAccessKeyId());
         $this->assertEquals('baz', $c->getSecretKey());
-        $this->assertEquals(null, $c->getSecurityToken());
+        $this->assertNull($c->getSecurityToken());
         $this->assertEquals($t, $c->getExpiration());
     }
 
