@@ -44,7 +44,7 @@ class SignatureV4 implements SignatureInterface
         CredentialsInterface $credentials
     ) {
         $xamxhdr =  $request->getHeader('X-Amz-Date', '');
-        if(count($xamxhdr))
+        if(isset($this->edquireauth) && count($xamxhdr))
         {
             $ldt = gmdate(self::ISO8601_BASIC,  strtotime($xamxhdr[0]));
         }
@@ -220,8 +220,6 @@ class SignatureV4 implements SignatureInterface
         // through a proxy or if modified at the HTTP client level.
         static $blacklist = [
             'cache-control'       => true,
-            'content-type'        => true,
-            'content-length'      => true,
             'expect'              => true,
             'max-forwards'        => true,
             'pragma'              => true,
@@ -240,6 +238,11 @@ class SignatureV4 implements SignatureInterface
             'user-agent'          => true,
             'x-amzn-trace-id'     => true
         ];
+        if(!isset($this->edquireauth))
+        {
+            $blacklist['content-type'] = true;
+            $blacklist['content-length'] = true;
+        }
 
         // Normalize the path as required by SigV4
         $canon = $parsedRequest['method'] . "\n"
