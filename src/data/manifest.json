@@ -1,4 +1,11 @@
 {
+    "acm-pca": {
+        "namespace": "ACMPCA",
+        "versions": {
+            "latest": "2017-08-22",
+            "2017-08-22": "2017-08-22"
+        }
+    },
     "acm": {
         "namespace": "Acm",
         "versions": {
@@ -13,6 +20,13 @@
             "2017-11-09": "2017-11-09"
         }
     },
+    "amplify": {
+        "namespace": "Amplify",
+        "versions": {
+            "latest": "2017-07-25",
+            "2017-07-25": "2017-07-25"
+        }
+    },
     "apigateway": {
         "namespace": "ApiGateway",
         "versions": {
@@ -21,11 +35,33 @@
             "2015-06-01": "2015-07-09"
         }
     },
+    "apigatewaymanagementapi": {
+        "namespace": "ApiGatewayManagementApi",
+        "versions": {
+            "latest": "2018-11-29",
+            "2018-11-29": "2018-11-29"
+        }
+    },
+    "apigatewayv2": {
+        "namespace": "ApiGatewayV2",
+        "versions": {
+            "latest": "2018-11-29",
+            "2018-11-29": "2018-11-29"
+        }
+    },
     "application-autoscaling": {
         "namespace": "ApplicationAutoScaling",
         "versions": {
             "latest": "2016-02-06",
             "2016-02-06": "2016-02-06"
+        }
+    },
+    "appmesh": {
+        "namespace": "AppMesh",
+        "versions": {
+            "latest": "2019-01-25",
+            "2019-01-25": "2019-01-25",
+            "2018-10-01": "2018-10-01"
         }
     },
     "appstream": {
@@ -63,6 +99,13 @@
             "2011-01-01": "2011-01-01"
         }
     },
+    "backup": {
+        "namespace": "Backup",
+        "versions": {
+            "latest": "2018-11-15",
+            "2018-11-15": "2018-11-15"
+        }
+    },
     "batch": {
         "namespace": "Batch",
         "versions": {
@@ -84,6 +127,13 @@
             "2017-10-25": "2017-10-25"
         }
     },
+    "chime": {
+        "namespace": "Chime",
+        "versions": {
+            "latest": "2018-05-01",
+            "2018-05-01": "2018-05-01"
+        }
+    },
     "cloud9": {
         "namespace": "Cloud9",
         "versions": {
@@ -94,7 +144,8 @@
     "clouddirectory": {
         "namespace": "CloudDirectory",
         "versions": {
-            "latest": "2016-05-10",
+            "latest": "2017-01-11",
+            "2017-01-11": "2017-01-11",
             "2016-05-10": "2016-05-10"
         }
     },
@@ -108,7 +159,10 @@
     "cloudfront": {
         "namespace": "CloudFront",
         "versions": {
-            "latest": "2017-03-25",
+            "latest": "2018-11-05",
+            "2018-11-05": "2018-11-05",
+            "2018-06-18": "2018-06-18",
+            "2017-10-30": "2017-10-30",
             "2017-03-25": "2017-03-25",
             "2016-11-25": "2016-11-25",
             "2016-09-29": "2016-09-29",
@@ -116,8 +170,8 @@
             "2016-08-20": "2016-08-20",
             "2016-08-01": "2016-08-01",
             "2016-01-28": "2016-01-28",
-            "2016-01-13": "2017-03-25",
-            "2015-09-17": "2017-03-25",
+            "2016-01-13": "2018-11-05",
+            "2015-09-17": "2018-11-05",
             "2015-07-27": "2015-07-27",
             "2015-04-17": "2015-07-27",
             "2014-11-06": "2015-07-27"
@@ -221,11 +275,25 @@
             "2017-11-27": "2017-11-27"
         }
     },
+    "comprehendmedical": {
+        "namespace": "ComprehendMedical",
+        "versions": {
+            "latest": "2018-10-30",
+            "2018-10-30": "2018-10-30"
+        }
+    },
     "config": {
         "namespace": "ConfigService",
         "versions": {
             "latest": "2014-11-12",
             "2014-11-12": "2014-11-12"
+        }
+    },
+    "connect": {
+        "namespace": "Connect",
+        "versions": {
+            "latest": "2017-08-08",
+            "2017-08-08": "2017-08-08"
         }
     },
     "cur": {
@@ -247,6 +315,13 @@
         "versions": {
             "latest": "2012-10-29",
             "2012-10-29": "2012-10-29"
+        }
+    },
+    "datasync": {
+        "namespace": "DataSync",
+        "versions": {
+            "latest": "2018-11-09",
+            "2018-11-09": "2018-11-09"
         }
     },
     "dax": {
@@ -277,11 +352,25 @@
             "2015-11-01": "2015-11-01"
         }
     },
+    "dlm": {
+        "namespace": "DLM",
+        "versions": {
+            "latest": "2018-01-12",
+            "2018-01-12": "2018-01-12"
+        }
+    },
     "dms": {
         "namespace": "DatabaseMigrationService",
         "versions": {
             "latest": "2016-01-01",
             "2016-01-01": "2016-01-01"
+        }
+    },
+    "docdb": {
+        "namespace": "DocDB",
+        "versions": {
+            "latest": "2014-10-31",
+            "2014-10-31": "2014-10-31"
         }
     },
     "ds": {
@@ -322,6 +411,13 @@
         "versions": {
             "latest": "2014-11-13",
             "2014-11-13": "2014-11-13"
+        }
+    },
+    "eks": {
+        "namespace": "EKS",
+        "versions": {
+            "latest": "2017-11-01",
+            "2017-11-01": "2017-11-01"
         }
     },
     "elasticache": {
@@ -409,6 +505,20 @@
             "2015-08-04": "2015-08-04"
         }
     },
+    "fms": {
+        "namespace": "FMS",
+        "versions": {
+            "latest": "2018-01-01",
+            "2018-01-01": "2018-01-01"
+        }
+    },
+    "fsx": {
+        "namespace": "FSx",
+        "versions": {
+            "latest": "2018-03-01",
+            "2018-03-01": "2018-03-01"
+        }
+    },
     "gamelift": {
         "namespace": "GameLift",
         "versions": {
@@ -423,6 +533,13 @@
             "2012-06-01": "2012-06-01"
         }
     },
+    "globalaccelerator": {
+        "namespace": "GlobalAccelerator",
+        "versions": {
+            "latest": "2018-08-08",
+            "2018-08-08": "2018-08-08"
+        }
+    },
     "glue": {
         "namespace": "Glue",
         "versions": {
@@ -435,6 +552,13 @@
         "versions": {
             "latest": "2017-06-07",
             "2017-06-07": "2017-06-07"
+        }
+    },
+    "groundstation": {
+        "namespace": "GroundStation",
+        "versions": {
+            "latest": "2019-05-23",
+            "2019-05-23": "2019-05-23"
         }
     },
     "guardduty": {
@@ -487,6 +611,55 @@
             "2015-05-28": "2015-05-28"
         }
     },
+    "iot1click-devices": {
+        "namespace": "IoT1ClickDevicesService",
+        "versions": {
+            "latest": "2018-05-14",
+            "2018-05-14": "2018-05-14"
+        }
+    },
+    "iot1click-projects": {
+        "namespace": "IoT1ClickProjects",
+        "versions": {
+            "latest": "2018-05-14",
+            "2018-05-14": "2018-05-14"
+        }
+    },
+    "iotanalytics": {
+        "namespace": "IoTAnalytics",
+        "versions": {
+            "latest": "2017-11-27",
+            "2017-11-27": "2017-11-27"
+        }
+    },
+    "iotevents-data": {
+        "namespace": "IoTEventsData",
+        "versions": {
+            "latest": "2018-10-23",
+            "2018-10-23": "2018-10-23"
+        }
+    },
+    "iotevents": {
+        "namespace": "IoTEvents",
+        "versions": {
+            "latest": "2018-07-27",
+            "2018-07-27": "2018-07-27"
+        }
+    },
+    "iotthingsgraph": {
+        "namespace": "IoTThingsGraph",
+        "versions": {
+            "latest": "2018-09-06",
+            "2018-09-06": "2018-09-06"
+        }
+    },
+    "kafka": {
+        "namespace": "Kafka",
+        "versions": {
+            "latest": "2018-11-14",
+            "2018-11-14": "2018-11-14"
+        }
+    },
     "kinesis-video-archived-media": {
         "namespace": "KinesisVideoArchivedMedia",
         "versions": {
@@ -513,6 +686,13 @@
         "versions": {
             "latest": "2015-08-14",
             "2015-08-14": "2015-08-14"
+        }
+    },
+    "kinesisanalyticsv2": {
+        "namespace": "KinesisAnalyticsV2",
+        "versions": {
+            "latest": "2018-05-23",
+            "2018-05-23": "2018-05-23"
         }
     },
     "kinesisvideo": {
@@ -543,6 +723,13 @@
             "2017-04-19": "2017-04-19"
         }
     },
+    "license-manager": {
+        "namespace": "LicenseManager",
+        "versions": {
+            "latest": "2018-08-01",
+            "2018-08-01": "2018-08-01"
+        }
+    },
     "lightsail": {
         "namespace": "Lightsail",
         "versions": {
@@ -564,11 +751,32 @@
             "2014-12-12": "2014-12-12"
         }
     },
+    "macie": {
+        "namespace": "Macie",
+        "versions": {
+            "latest": "2017-12-19",
+            "2017-12-19": "2017-12-19"
+        }
+    },
+    "managedblockchain": {
+        "namespace": "ManagedBlockchain",
+        "versions": {
+            "latest": "2018-09-24",
+            "2018-09-24": "2018-09-24"
+        }
+    },
     "marketplacecommerceanalytics": {
         "namespace": "MarketplaceCommerceAnalytics",
         "versions": {
             "latest": "2015-07-01",
             "2015-07-01": "2015-07-01"
+        }
+    },
+    "mediaconnect": {
+        "namespace": "MediaConnect",
+        "versions": {
+            "latest": "2018-11-14",
+            "2018-11-14": "2018-11-14"
         }
     },
     "mediaconvert": {
@@ -583,6 +791,13 @@
         "versions": {
             "latest": "2017-10-14",
             "2017-10-14": "2017-10-14"
+        }
+    },
+    "mediapackage-vod": {
+        "namespace": "MediaPackageVod",
+        "versions": {
+            "latest": "2018-11-07",
+            "2018-11-07": "2018-11-07"
         }
     },
     "mediapackage": {
@@ -604,6 +819,13 @@
         "versions": {
             "latest": "2017-09-01",
             "2017-09-01": "2017-09-01"
+        }
+    },
+    "mediatailor": {
+        "namespace": "MediaTailor",
+        "versions": {
+            "latest": "2018-04-23",
+            "2018-04-23": "2018-04-23"
         }
     },
     "metering.marketplace": {
@@ -648,6 +870,13 @@
             "2017-01-17": "2017-01-17"
         }
     },
+    "neptune": {
+        "namespace": "Neptune",
+        "versions": {
+            "latest": "2014-10-31",
+            "2014-10-31": "2014-10-31"
+        }
+    },
     "opsworks": {
         "namespace": "OpsWorks",
         "versions": {
@@ -669,6 +898,41 @@
             "2016-11-28": "2016-11-28"
         }
     },
+    "personalize-events": {
+        "namespace": "PersonalizeEvents",
+        "versions": {
+            "latest": "2018-03-22",
+            "2018-03-22": "2018-03-22"
+        }
+    },
+    "personalize-runtime": {
+        "namespace": "PersonalizeRuntime",
+        "versions": {
+            "latest": "2018-05-22",
+            "2018-05-22": "2018-05-22"
+        }
+    },
+    "personalize": {
+        "namespace": "Personalize",
+        "versions": {
+            "latest": "2018-05-22",
+            "2018-05-22": "2018-05-22"
+        }
+    },
+    "pi": {
+        "namespace": "PI",
+        "versions": {
+            "latest": "2018-02-27",
+            "2018-02-27": "2018-02-27"
+        }
+    },
+    "pinpoint-email": {
+        "namespace": "PinpointEmail",
+        "versions": {
+            "latest": "2018-07-26",
+            "2018-07-26": "2018-07-26"
+        }
+    },
     "pinpoint": {
         "namespace": "Pinpoint",
         "versions": {
@@ -688,6 +952,27 @@
         "versions": {
             "latest": "2017-10-15",
             "2017-10-15": "2017-10-15"
+        }
+    },
+    "quicksight": {
+        "namespace": "QuickSight",
+        "versions": {
+            "latest": "2018-04-01",
+            "2018-04-01": "2018-04-01"
+        }
+    },
+    "ram": {
+        "namespace": "RAM",
+        "versions": {
+            "latest": "2018-01-04",
+            "2018-01-04": "2018-01-04"
+        }
+    },
+    "rds-data": {
+        "namespace": "RDSDataService",
+        "versions": {
+            "latest": "2018-08-01",
+            "2018-08-01": "2018-08-01"
         }
     },
     "rds": {
@@ -726,6 +1011,13 @@
             "2017-01-26": "2017-01-26"
         }
     },
+    "robomaker": {
+        "namespace": "RoboMaker",
+        "versions": {
+            "latest": "2018-06-29",
+            "2018-06-29": "2018-06-29"
+        }
+    },
     "route53": {
         "namespace": "Route53",
         "versions": {
@@ -738,6 +1030,13 @@
         "versions": {
             "latest": "2014-05-15",
             "2014-05-15": "2014-05-15"
+        }
+    },
+    "route53resolver": {
+        "namespace": "Route53Resolver",
+        "versions": {
+            "latest": "2018-04-01",
+            "2018-04-01": "2018-04-01"
         }
     },
     "runtime.lex": {
@@ -761,11 +1060,32 @@
             "2006-03-01": "2006-03-01"
         }
     },
+    "s3control": {
+        "namespace": "S3Control",
+        "versions": {
+            "latest": "2018-08-20",
+            "2018-08-20": "2018-08-20"
+        }
+    },
     "sagemaker": {
         "namespace": "SageMaker",
         "versions": {
             "latest": "2017-07-24",
             "2017-07-24": "2017-07-24"
+        }
+    },
+    "secretsmanager": {
+        "namespace": "SecretsManager",
+        "versions": {
+            "latest": "2017-10-17",
+            "2017-10-17": "2017-10-17"
+        }
+    },
+    "securityhub": {
+        "namespace": "SecurityHub",
+        "versions": {
+            "latest": "2018-10-26",
+            "2018-10-26": "2018-10-26"
         }
     },
     "serverlessrepo": {
@@ -794,6 +1114,20 @@
         "versions": {
             "latest": "2016-06-02",
             "2016-06-02": "2016-06-02"
+        }
+    },
+    "signer": {
+        "namespace": "signer",
+        "versions": {
+            "latest": "2017-08-25",
+            "2017-08-25": "2017-08-25"
+        }
+    },
+    "sms-voice": {
+        "namespace": "PinpointSMSVoice",
+        "versions": {
+            "latest": "2018-09-05",
+            "2018-09-05": "2018-09-05"
         }
     },
     "sms": {
@@ -873,11 +1207,25 @@
             "2012-01-25": "2012-01-25"
         }
     },
+    "textract": {
+        "namespace": "Textract",
+        "versions": {
+            "latest": "2018-06-27",
+            "2018-06-27": "2018-06-27"
+        }
+    },
     "transcribe": {
         "namespace": "TranscribeService",
         "versions": {
             "latest": "2017-10-26",
             "2017-10-26": "2017-10-26"
+        }
+    },
+    "transfer": {
+        "namespace": "Transfer",
+        "versions": {
+            "latest": "2018-11-05",
+            "2018-11-05": "2018-11-05"
         }
     },
     "translate": {
@@ -906,6 +1254,13 @@
         "versions": {
             "latest": "2016-05-01",
             "2016-05-01": "2016-05-01"
+        }
+    },
+    "worklink": {
+        "namespace": "WorkLink",
+        "versions": {
+            "latest": "2018-09-25",
+            "2018-09-25": "2018-09-25"
         }
     },
     "workmail": {

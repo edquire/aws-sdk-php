@@ -285,4 +285,114 @@ class FunctionsTest extends TestCase
     {
         Aws\manifest('notarealservicename');
     }
+
+    /**
+     * @covers Aws\is_valid_hostname()
+     * @dataProvider getHostnameTestCases
+     */
+    public function testValidatesHostnames($hostname, $expected)
+    {
+        $this->assertEquals($expected, Aws\is_valid_hostname($hostname));
+    }
+
+    public function getHostnameTestCases()
+    {
+        return [
+            ['a', true],
+            ['a.', true],
+            ['0', true],
+            ['1.2.3.4', true],
+            ['a.b', true],
+            ['a.b.c.d.e', true],
+            ['a.b.c.d.e.', true],
+            ['a-b.c-d', true],
+            ['a--b.c--d', true],
+            ['a b', false],
+            ['a..b', false],
+            ['a.b ', false],
+            ['a-.b', false],
+            ['-a.b', false],
+            ['.a.b', false],
+            ['<a', false],
+            ['(a', false],
+            ['a>', false],
+            ['a)', false],
+            ['.', false],
+            [' ', false],
+            ['-', false],
+            ['', false],
+            [str_repeat('a', 63), true],
+            [str_repeat('a', 64), false],
+            [
+                str_repeat('a', 63) . '.' . str_repeat('a', 63) . '.'
+                    . str_repeat('a', 63) . '.' . str_repeat('a', 61),
+                true
+            ],
+            [
+                str_repeat('a', 63) . '.' . str_repeat('a', 63) . '.'
+                    . str_repeat('a', 63) . '.' . str_repeat('a', 62),
+                false
+            ],
+        ];
+    }
+
+    /**
+     * @covers Aws\parse_ini_file()
+     * @dataProvider getIniFileTestCases
+     */
+    public function testParsesIniFile($ini, $expected)
+    {
+        $tmpFile = sys_get_temp_dir() . '/test.ini';
+        file_put_contents($tmpFile, $ini);
+        $this->assertEquals(
+            $expected,
+            Aws\parse_ini_file($tmpFile, true, INI_SCANNER_RAW)
+        );
+        unlink($tmpFile);
+    }
+
+    public function getIniFileTestCases()
+    {
+        return [
+            [
+                <<<EOT
+[default]
+foo_key = bar
+baz_key = qux
+[custom]
+foo_key = bar-custom
+baz_key = qux-custom
+EOT
+                ,
+                [
+                    'default' => [
+                        'foo_key' => 'bar',
+                        'baz_key' => 'qux',
+                    ],
+                    'custom' => [
+                        'foo_key' => 'bar-custom',
+                        'baz_key' => 'qux-custom',
+                    ]
+                ]
+            ],
+            [
+                <<<EOT
+[default]
+;Full-line comment = ignored
+#Full-line comment = ignored
+foo_key = bar;Inline comment = ignored
+baz_key = qux
+*star_key = not_ignored
+EOT
+                ,
+                [
+                    'default' => [
+                        'foo_key' => 'bar',
+                        'baz_key' => 'qux',
+                        '*star_key' => 'not_ignored'
+                    ],
+                ],
+            ],
+        ];
+    }
 }

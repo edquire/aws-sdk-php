@@ -119,7 +119,11 @@ class DocsBuilder
             }
         }
 
-        ksort($services, SORT_NATURAL | SORT_FLAG_CASE);
+        uasort($services, function($a, $b) {
+            $serviceA = current($a);
+            $serviceB = current($b);
+            return strcasecmp($serviceA->namespace, $serviceB->namespace);
+        });
         $this->updateHomepage($services);
         $this->updateClients($services);
         $this->updateAliases($services, $aliases);
@@ -714,13 +718,32 @@ EOT;
             $html->elem('div', 'alert alert-info', 'The results for this operation are always empty.');
         } else {
             $outputShapes = new ShapeIterator($output, $service->docs);
+            $eventStreamExample = null;
+            foreach ($outputShapes as $shape) {
+                if (!empty($shape['eventstream'])) {
+                    $eventStreamExample = new EventStreamExampleBuilder($shape['param']);
+                }
+            }
             $outputExample = new ExampleBuilder($name, false);
             foreach ($outputShapes as $shape) {
                 $outputExample->addShape($shape);
+                if ($eventStreamExample) {
+                    $eventStreamExample->addShape($shape);
+                }
             }
             $html->elem('pre', null, htmlentities($outputExample->getCode()))
                 ->elem('h4', null, 'Result Details')
                 ->append($this->renderShape($service->docs, $output, false));
+            if ($eventStreamExample) {
+                $desc = <<<EOT
+To use an EventParsingIterator, you will need to loop over the events it will
+generate and check the top-level field to determine which type of event it is.
+EOT;
+
+                $html->elem('h5', null, 'Using an EventParsingIterator')
+                    ->elem('p', null, $desc)
+                    ->elem('pre', null, htmlentities($eventStreamExample->getCode()));
+            }
         }
 
         // Errors
@@ -838,9 +861,11 @@ EOT;
             $html->elem('span', 'term', $name);
             $html->close();
             $html->open('dd', 'param-def');
-                $html->append($this->describeParam($member));
-                $desc = $docs->getShapeDocs($member['name'], $shape['name'], $name);
-                $html->elem('div', 'param-def-doc', $desc);
+            $required = !empty($shape['required'])
+                && in_array($name, $shape['required']);
+            $html->append($this->describeParam($member, $required));
+            $desc = $docs->getShapeDocs($member['name'], $shape['name'], $name);
+            $html->elem('div', 'param-def-doc', $desc);
             $html->close();
         }
 
@@ -850,7 +875,7 @@ EOT;
         return $html;
     }
 
-    private function describeParam(AbstractModel $member)
+    private function describeParam(AbstractModel $member, $required = false)
     {
         $html = new HtmlDocument();
         if ($member instanceof StructureShape) {
@@ -866,7 +891,7 @@ EOT;
         }
 
         $html->open('div', 'param-attributes')->open('ul');
-        if ($member['required']) {
+        if ($required) {
             $html->elem('li', 'required', 'Required: Yes');
         }
         $html->elem('li', '', 'Type: ' . $typeDesc);
@@ -879,6 +904,9 @@ EOT;
     private function getMemberText(AbstractModel $member)
     {
         if ($member instanceof StructureShape) {
+            if (!empty($member['eventstream'])) {
+                return $this->getEventStreamMemberText($member);
+            }
             return $this->memberLink($member->getName()) . ' structure';
         } elseif ($member instanceof ListShape) {
             switch ($member->getMember()['type']) {
@@ -899,6 +927,24 @@ EOT;
         }
 
         return $this->getPrimitivePhpType($member);
+    }
+
+    private function getEventStreamMemberText(StructureShape $member)
+    {
+        return 'EventParsingIterator supplying the following structures: '
+            . implode(', ',
+                array_map(
+                    [$this, 'memberLink'],
+                    array_reduce(
+                        $member->getMembers(),
+                        function ($carry, $item) {
+                            $carry []= $item['name'];
+                            return $carry;
+                        },
+                        []
+                    )
+                )
+            );
     }
 
     private function getPrimitivePhpType($member)

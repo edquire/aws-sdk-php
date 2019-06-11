@@ -27,7 +27,7 @@ clear-cache:
 	php build/aws-clear-cache.php
 
 test:
-	@AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar \
+	@AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar AWS_CSM_ENABLED=false \
 	vendor/bin/phpunit --testsuite=unit $(TEST)
 
 test-phar: package
@@ -38,7 +38,7 @@ test-phar: package
 	php -dopcache.enable_cli=1 build/phar-test-runner.php --format=progress
 
 coverage:
-	@AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar \
+	@AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar AWS_CSM_ENABLED=false \
 	vendor/bin/phpunit --testsuite=unit --coverage-html=build/artifacts/coverage $(TEST)
 
 coverage-show:
@@ -64,10 +64,10 @@ integ:
 	vendor/bin/behat --format=progress --tags=integ
 
 smoke:
-	vendor/bin/behat --format=progress --tags=smoke
+	vendor/bin/behat --format=progress --suite=smoke
 
 smoke-noassumerole:
-	vendor/bin/behat --format=progress --tags='~@noassumerole&&@smoke'
+	vendor/bin/behat --format=progress --suite=smoke --tags='~@noassumerole'
 
 # Packages the phar and zip
 package:

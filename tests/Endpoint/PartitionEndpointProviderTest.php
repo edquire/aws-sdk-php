@@ -216,6 +216,53 @@ class PartitionEndpointProviderTest extends TestCase
         $this->assertSame("https://$endpoint", $data['endpoint']);
     }
 
+    public function testCanMergePrefixData()
+    {
+        $prefixData = [
+            "prefix-groups" => [
+                "ec2" => ["ec2_old", "ec2_deprecated"],
+                "s3" => ["s3_old"],
+            ],
+        ];
+
+        $mergedData = PartitionEndpointProvider::mergePrefixData(
+            [
+                "partitions" => [
+                    [
+                        "services" => [
+                            "ec2" => [
+                                "endpoints" => [
+                                    "us-east-1" => []
+                                ]
+                            ],
+                            "s3" => [
+                                "endpoints" => [
+                                    "us-east-1" => [],
+                                    "us-east-2" => []
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            $prefixData
+        );
+
+        foreach ($mergedData["partitions"] as $partition) {
+            foreach ($prefixData['prefix-groups'] as $current => $old) {
+                foreach ($old as $prefix) {
+                    $this->assertArrayHasKey(
+                        $prefix, $partition["services"]
+                    );
+                    $this->assertSame(
+                        $partition["services"][$current],
+                        $partition["services"][$prefix]
+                    );
+                }
+            }
+        }
+    }
+
     public function knownEndpointProvider()
     {
         $partitions = PartitionEndpointProvider::defaultProvider();
@@ -496,7 +543,6 @@ class PartitionEndpointProviderTest extends TestCase
             [$partitions, 'us-east-1', 'support', 'support.us-east-1.amazonaws.com'],
             [$partitions, 'us-east-1', 'swf', 'swf.us-east-1.amazonaws.com'],
             [$partitions, 'us-east-1', 'workspaces', 'workspaces.us-east-1.amazonaws.com'],
-            [$partitions, 'us-east-1', 'waf', 'waf.amazonaws.com'],
             [$partitions, 'us-gov-west-1', 'autoscaling', 'autoscaling.us-gov-west-1.amazonaws.com'],
             [$partitions, 'us-gov-west-1', 'cloudformation', 'cloudformation.us-gov-west-1.amazonaws.com'],
             [$partitions, 'us-gov-west-1', 'cloudhsm', 'cloudhsm.us-gov-west-1.amazonaws.com'],
